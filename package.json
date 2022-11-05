@@ -1,0 +1,22 @@
+{
+  "name": "port-forward-plus",
+  "version": "1.0.0",
+  "description": "Utility to automatically port forward services from k8s containers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikya/port-forward-plus.git"
+  },
+  "author": "Shrikant Sonone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shikya/port-forward-plus/issues"
+  },
+  "homepage": "https://github.com/shikya/port-forward-plus#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
