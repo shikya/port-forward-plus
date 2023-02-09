@@ -3,34 +3,37 @@ const yaml = require('js-yaml');
 const fs   = require('fs');
 
 // read yaml and parse
-const config = yaml.load(fs.readFileSync('services.yaml', 'utf8'));
-console.log(config);
+const config = yaml.load(fs.readFileSync('services-1.yaml', 'utf8'));
+// console.log(config);
 
 config.services.map((service, index, array) => {
-  console.log(JSON.stringify(service));
-  return getPortForward(index, service.name, service.port.source, service.port.destination);
+  // console.log(JSON.stringify(service));
+  getPortForward(index, service.name, service.port.local, service.port.pod);
 });
 
 // get list of services
 
 function getPortForward(index, name, source, destination) {
 
-  console.log(`Starting service ${name} on port ${destination}`);
+  console.log(`Starting ${name} on port ${destination}`);
   // start child process
-  const child = spawn('kubectl', ['port-forward', name, `${source}:${destination}`]);
+  let child = spawn('kubectl', ['port-forward', name, `${source}:${destination}`]);
 
   child.stdout.on('data', (data) => {
-      console.log(`child process data with code ${data}`);
+      console.log(`child process stdout data ${name}\t\tdata with code ${data}`);
   });
 
   child.stderr.on('data', (data) => {
-    console.error(`stderr2: ${data}`);
+    console.error(`child process stderr data ${name}\t\tstderr2 ${name}: ${data}`);
     child.kill();
   });
 
   child.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
+    console.log(`child process close code ${name}\t\texited with code ${code}`);
     child.kill();
+    setTimeout(() => {
+      getPortForward(index, name, source, destination)
+    }, 1000);
   });
 
   return child;
