@@ -1,0 +1,11 @@
+services:
+  -
+    name: svc/service1
+    port:
+      local: 8080
+      pod: 8080
+  -
+    name: svc/service2
+    port:
+      local: 9088
+      pod: 9090
