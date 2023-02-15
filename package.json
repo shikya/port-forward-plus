@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/shikya/port-forward-plus#readme",
   "dependencies": {
+    "cfonts": "^3.1.1",
+    "cli-table": "^0.3.11",
     "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.22"
   }
 }
